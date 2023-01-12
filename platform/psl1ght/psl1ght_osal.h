@@ -42,7 +42,7 @@ typedef sys_mutex_t pte_osMutexHandle;
 
 
 
-#define OS_MAX_SIMUL_THREADS 10
+#define OS_MAX_SIMUL_THREADS 256
 
 #define OS_DEFAULT_PRIO 1001
 
@@ -62,5 +62,12 @@ int Psl1ghtInterlockedDecrement(int *pdest);
 int Psl1ghtInterlockedIncrement(int *pdest);
 
 
+struct OsalThreadInfo {
+  uint32_t threadNumber;
+  sys_ppu_thread_t threadId;
+  void *tlsPtr;
+};
+
+extern struct OsalThreadInfo __threadInfo[];
 
 
