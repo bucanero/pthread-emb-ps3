@@ -10,35 +10,36 @@ set(CMAKE_CXX_COMPILER ppu-g++)
 
 # Source files
 set(MUTEX_OBJS
-        pthread_mutex_unlock.c
-        pthread_mutex_init.c
-        pthread_mutex_destroy.c
-        pthread_mutex_lock.c
-        pthread_mutex_timedlock.c
-        pthread_mutex_trylock.c
+        src/pthread_mutex_unlock.c
+        src/pthread_mutex_init.c
+        src/pthread_mutex_destroy.c
+        src/pthread_mutex_lock.c
+        src/pthread_mutex_timedlock.c
+        src/pthread_mutex_trylock.c
+        src/pthread-atfork.c
 )
 
 set(MUTEXATTR_OBJS
-        pthread_mutexattr_destroy.c
-        pthread_mutexattr_getkind_np.c
-        pthread_mutexattr_getpshared.c
-        pthread_mutexattr_gettype.c
-        pthread_mutexattr_init.c
-        pthread_mutexattr_setkind_np.c
-        pthread_mutexattr_setpshared.c
-        pthread_mutexattr_settype.c
+        src/pthread_mutexattr_destroy.c
+        src/pthread_mutexattr_getkind_np.c
+        src/pthread_mutexattr_getpshared.c
+        src/pthread_mutexattr_gettype.c
+        src/pthread_mutexattr_init.c
+        src/pthread_mutexattr_setkind_np.c
+        src/pthread_mutexattr_setpshared.c
+        src/pthread_mutexattr_settype.c
 )
 
 set(SUPPORT_OBJS
-        pte_relmillisecs.c
-        pte_mutex_check_need_init.c
-        pte_threadDestroy.c
-        pte_new.c
-        pte_threadStart.c
-        global.c
-        pte_reuse.c
-        pthread_init.c
-        pthread_terminate.c
+        src/pte_relmillisecs.c
+        src/pte_mutex_check_need_init.c
+        src/pte_threadDestroy.c
+        src/pte_new.c
+        src/pte_threadStart.c
+        src/global.c
+        src/pte_reuse.c
+        src/pthread_init.c
+        src/pthread_terminate.c
 )
 
 # Define target
@@ -50,8 +51,8 @@ add_library(libpthread STATIC
 
 # Include directories
 target_include_directories(libpthread PUBLIC
-        platform/helper
-        platform/psl1ght
+        src/platform/helper
+        src/platform/psl1ght
 )
 
 # Compiler flags
@@ -60,7 +61,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -G0 -O2 -Wall -g -fno-strict-aliasing -f
 
 # Add include directories
 include_directories(
-        .
+        src
         /ps3dev/ppu/include/
 )
 
@@ -73,10 +74,10 @@ install(TARGETS libpthread DESTINATION /ps3dev/ppu/lib)
 
 # Specify the files you want to install
 set(INSTALL_FILES
-        "platform/psp/pte_types.h"
-        "pthread.h"
-        "semaphore.h"
-        "sched.h"
+        "src/platform/psp/pte_types.h"
+        "src/pthread.h"
+        "src/semaphore.h"
+        "src/sched.h"
 )
 # Specify the directory where you want to install the files
 set(INSTALL_DIR "/ps3dev/ppu/include/") # Change bin to your desired directory

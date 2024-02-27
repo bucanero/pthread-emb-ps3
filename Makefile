@@ -1,14 +1,19 @@
-example:	native	cmake	meson
 
-native:
-	ppu-g++ main.cpp -o main_cpp -lpthread -I ${PS3DEV}/ppu/include/ -L ${PS3DEV}/ppu/lib/ && echo CPP OK
-	ppu-gcc main.c -o main_c -lpthread -I ${PS3DEV}/ppu/include/ -L ${PS3DEV}/ppu/lib/ && echo C OK
+all:	cmake	meson
 
 cmake:
 	(mkdir -p build-cmake && cd build-cmake && cmake .. && make) && echo CPP CMAKE OK
 
+cmake-install:	cmake
+	cd build-cmake && make install
+
 meson:
 	(meson setup --cross-file ps3.txt build-meson && meson compile -C build-meson) && echo CPP MESON OK
+
+meson-install:	meson
+	cd build-meson && meson install
+
+install: meson-install
 
 clean:
 	rm -rf main_c main_cpp build_cmake build_meson

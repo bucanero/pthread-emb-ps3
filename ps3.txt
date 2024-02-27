@@ -1,0 +1,22 @@
+[constants]
+cflags = ['-G0', '-O2', '-Wall', '-g', '-fno-strict-aliasing']
+cppflags = ['-fexceptions', '-fno-rtti', '-Werror', '-D__CLEANUP_CXX']
+
+[binaries]
+c = 'ppu-gcc'
+cpp = 'ppu-g++'
+ar = 'ppu-ar'
+strip = 'ppu-strip'
+
+[built-in options]
+c_args = ['-mcpu=cell'
+        , '-I/ps3dev/ppu/include'
+        ]
+c_link_args = [ '-L/ps3dev/ppu/lib', '-lpthread']
+default_library = 'static'
+
+[host_machine]
+system = 'ps3'
+cpu_family = 'cell'
+cpu = 'cell'
+endian = 'big'
