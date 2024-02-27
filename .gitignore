@@ -55,3 +55,6 @@ dkms.conf
 
 .idea
 .vscode
+build
+main_c
+main_cpp

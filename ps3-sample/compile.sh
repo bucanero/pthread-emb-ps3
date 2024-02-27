@@ -1,2 +1,3 @@
-ppu-g++ main.cpp -o main_cpp -lpthread -I /ps3dev/ppu/include/ -L /ps3dev/ppu/lib/ && echo CPP OK
-ppu-gcc main.c -o main_c -lpthread -I /ps3dev/ppu/include/ -L /ps3dev/ppu/lib/ && echo C OK
+ppu-g++ main.cpp -o main_cpp -lpthread -I $PS3DEV/ppu/include/ -L $PS3DEV/ppu/lib/ && echo CPP OK
+ppu-gcc main.c -o main_c -lpthread -I $PS3DEV/ppu/include/ -L $PS3DEV/ppu/lib/ && echo C OK
+(mkdir -p build && cd build && cmake -DCMAKE_C_COMPILER=ppu-gcc -DCMAKE_CXX_COMPILER=ppu-g++ .. && make) && echo CPP CMAKE OK
