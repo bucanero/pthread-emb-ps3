@@ -192,7 +192,7 @@ pte_threadStart.o: pte_threadStart.c
 endif
 
 clean:
-	rm -rf $(TARGET_LIB) $(OBJS)
+	rm -rf $(TARGET_LIB) $(OBJS) *.d
 
 install: $(TARGET_LIB)
 	@cp -v $(TARGET_LIB) $(PSL1GHT)/ppu/lib/libpthread.a

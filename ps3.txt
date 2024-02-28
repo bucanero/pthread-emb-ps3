@@ -9,9 +9,7 @@ ar = 'ppu-ar'
 strip = 'ppu-strip'
 
 [built-in options]
-c_args = ['-mcpu=cell'
-        , '-I/ps3dev/ppu/include'
-        ]
+c_args = ['-mcpu=cell', '-I/ps3dev/ppu/include']
 c_link_args = [ '-L/ps3dev/ppu/lib', '-lpthread']
 default_library = 'static'
 
