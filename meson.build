@@ -1,4 +1,4 @@
-project('libpthread', 'c', version: '1.0.0',
+project('pthread', 'c', version: '1.0.0',
         default_options: ['c_std=gnu99', 'cpp_std=c++11'],
 )
 
@@ -169,25 +169,45 @@ os_objs = [
     'src/platform/helper/tls-helper.c',
 ]
 
-sources = [mutex_objs + mutexattr_objs + support_objs + thread_objs + tls_objs + misc_objs + sem_objs + barrier_objs + spin_objs + condvar_objs + rwlock_objs + cancel_objs + os_objs]
+sources = [mutex_objs,
+           mutexattr_objs,
+           support_objs,
+           thread_objs,
+           tls_objs,
+           misc_objs,
+           sem_objs,
+           barrier_objs,
+           spin_objs,
+           condvar_objs,
+           rwlock_objs,
+           cancel_objs,
+           os_objs]
 
 # Define target
-libpthread = static_library('libpthread',
-                            sources : sources,
+libpthread = static_library('pthread',
+                            sources,
                             include_directories : ['/ps3dev/ppu/include/', 'src', 'src/platform/helper', 'src/platform/psl1ght'])
 
-# Installation
-install_dir = '/ps3dev/ppu/lib'
+## Installation
+libfile = meson.current_build_dir() + '/libpthread.a'
+message('libfile', libfile)
+fs = import('fs')
+if fs.is_file(libfile)
 
-# Define files to install
-install_files = [
-    'src/platform/psp/pte_types.h',
-    'src/pthread.h',
-    'src/semaphore.h',
-    'src/sched.h'
-]
+    install_data(libfile, install_dir : '/ps3dev/ppu/lib')
 
-# Copy files during installation
-foreach file : install_files
-    install_data(file, install_dir : '/ps3dev/ppu/include/')
-endforeach
+    # Define files to install
+    install_files = [
+        'src/platform/psp/pte_types.h',
+        'src/pthread.h',
+        'src/semaphore.h',
+        'src/sched.h'
+    ]
+
+    # Copy files during installation
+    foreach file : install_files
+        install_data(file, install_dir : '/ps3dev/ppu/include')
+    endforeach
+else
+    message('Nothing to be installed')
+endif

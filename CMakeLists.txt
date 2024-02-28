@@ -249,3 +249,6 @@ configure_file(
 add_custom_target(uninstall
         COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake
 )
+
+# Mark the uninstall target as a pseudo-dependency of the build target
+add_dependencies(pthread uninstall)

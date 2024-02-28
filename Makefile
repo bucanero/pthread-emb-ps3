@@ -14,13 +14,13 @@ cmake-uninstall:
 	cd build-cmake && make uninstall
 
 meson-build:
-	(meson setup --cross-file ps3.txt build-meson && meson compile -C build-meson) && echo CPP MESON OK
+	(meson setup --reconfigure --cross-file ps3.txt build-meson && meson compile -C build-meson) && echo CPP MESON OK
 
 meson-install:	meson-build
 	cd build-meson && meson install
 
 meson-uninstall:
-	rm -f ${PS3DEV}/ppu/lib/libthread.a \
+	rm -f ${PS3DEV}/ppu/lib/libpthread.a \
 	${PS3DEV}/ppu/include/pte_types.h \
 	${PS3DEV}/ppu/include/pthread.h \
 	${PS3DEV}/ppu/include/semaphore.h \
