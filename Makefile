@@ -1,11 +1,11 @@
 docker-build:
-	docker run -i --rm -v `pwd`:/src mlafeldt/ps3dev bash -c "make cmake-build"
+	docker run -i --rm -v `pwd`:/src hldtux/ps3dev bash -c "make cmake-build"
 
 docker-run:
-	docker run -it --rm -v `pwd`:/src mlafeldt/ps3dev bash
+	docker run -it --rm -v `pwd`:/src hldtux/ps3dev bash
 
 cmake-build:
-	(mkdir -p build-cmake && cd build-cmake && cmake .. -Wno-dev && make) && echo CPP CMAKE OK
+	(mkdir -p build-cmake && cd build-cmake && cmake -Wno-dev .. && make) && echo CPP CMAKE OK
 
 cmake-install:	cmake-build
 	cd build-cmake && make install

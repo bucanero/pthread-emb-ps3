@@ -3,13 +3,9 @@ project(pthread)
 # Set cleanup type (default to C)
 set(CLEANUP_TYPE C)
 
-# Set the C and C++ compilers
+## Set the C and C++ compilers
 set(CMAKE_C_COMPILER ppu-gcc)
 set(CMAKE_CXX_COMPILER ppu-g++)
-
-# Flags
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -G0 -O2 -Wall -g -fno-strict-aliasing -Isrc -Isrc/platform/helper -I$(PS3DEV)/ppu/include")
-set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -fexceptions -fno-rtti -Werror -D__CLEANUP_CXX")
 
 # Source files
 set(MUTEX_OBJS
@@ -199,8 +195,8 @@ target_include_directories(pthread PUBLIC
 )
 
 # Compiler flags
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -G0 -O2 -Wall -g -fno-strict-aliasing")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -G0 -O2 -Wall -g -fno-strict-aliasing -fexceptions -fno-rtti -Werror -D__CLEANUP_CXX")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2 -Wall -g -fno-strict-aliasing")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -Wall -g -fno-strict-aliasing -fexceptions -fno-rtti -Werror -D__CLEANUP_CXX")
 
 # Add include directories
 include_directories(
