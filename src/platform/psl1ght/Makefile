@@ -203,6 +203,8 @@ install_library: $(TARGET_LIB)
 	@echo "Done."
 
 install_package_config:
-	@cp -v pthread.pc $(PSL1GHT)/portlibs/ppu/lib/pkgconfig/pthread.pc
+	sed -e "s/@prefix@/\/usr\/local\/ps3dev\/portlibs\/ppu/" \
+      -e "s/@VERSION@/1.0.0/" \
+      -e "s/@LIBS@/-lpthread/" pthread.pc.in > $(PSL1GHT)/portlibs/ppu/lib/pkgconfig/pthread.pc
 
 install:  install_library install_package_config
