@@ -1,0 +1,10 @@
+prefix=${PSL1GHT}/portlibs/ppu
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: pthread
+Description: POSIX Threads for embedded systems (PTE)
+Version: 2.8.0
+Libs: -L${libdir} -lpthread
+Cflags: -I${includedir}
