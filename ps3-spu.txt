@@ -1,0 +1,23 @@
+[constants]
+cflags = ['-G0', '-O2', '-Wall', '-g', '-fno-strict-aliasing']
+cppflags = ['-fexceptions', '-fno-rtti', '-Werror', '-D__CLEANUP_CXX']
+
+[properties]
+ps3dev = '$PS3DEV'
+
+[binaries]
+c = 'spu-gcc'
+cpp = 'spu-g++'
+ar = 'spu-ar'
+strip = 'spu-strip'
+
+[built-in options]
+c_args = ['-I${ps3dev}/spu/include']
+c_link_args = [ '-L${ps3dev}/spu/lib', '-lpthread']
+default_library = 'static'
+
+[host_machine]
+system = 'ps3'
+cpu_family = 'cell'
+cpu = 'cell'
+endian = 'big'

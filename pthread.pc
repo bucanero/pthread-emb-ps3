@@ -1,0 +1,11 @@
+prefix=/ps3dev/ppu
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+Name: PThread
+Description: POSIX Threads for embedded systems (PTE)
+Version: 1.0.0
+Requires:
+Libs: -L${libdir} -lpthread
+Cflags: -I${includedir}

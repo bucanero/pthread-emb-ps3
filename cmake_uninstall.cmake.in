@@ -1,0 +1,20 @@
+# This script is used to uninstall files installed by CMake.
+
+# Specify the installation directory
+set(INSTALL_DIR "@INSTALL_DIR@") # Replace @INSTALL_DIR@ with the actual installation directory
+
+# List of files installed during installation
+set(INSTALLED_FILES
+    "@INSTALLED_FILES@"
+    # Add the list of installed files here
+)
+
+# Remove installed files
+foreach(file ${INSTALLED_FILES})
+    message(STATUS "Removing file: ${file}")
+    if (EXISTS "${file}")
+        file(REMOVE "${file}")
+    else()
+        message(STATUS "File does not exist: ${file}")
+    endif()
+endforeach()

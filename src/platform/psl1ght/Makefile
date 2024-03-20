@@ -192,12 +192,19 @@ pte_threadStart.o: pte_threadStart.c
 endif
 
 clean:
-	rm -rf $(TARGET_LIB) $(OBJS)
+	rm -rf $(TARGET_LIB) $(OBJS) *.d
 
-install: $(TARGET_LIB)
-	@cp -v $(TARGET_LIB) $(PSL1GHT)/ppu/lib/libpthread.a
-	@cp -v pte_types.h $(PSL1GHT)/ppu/include
-	@cp -v ../../pthread.h $(PSL1GHT)/ppu/include
-	@cp -v ../../semaphore.h $(PSL1GHT)/ppu/include
-	@cp -v ../../sched.h $(PSL1GHT)/ppu/include
+install_library: $(TARGET_LIB)
+	@cp -v $(TARGET_LIB) $(PSL1GHT)/portlibs/ppu/lib/libpthread.a
+	@cp -v pte_types.h $(PSL1GHT)/portlibs/ppu/include
+	@cp -v ../../pthread.h $(PSL1GHT)/portlibs/ppu/include
+	@cp -v ../../semaphore.h $(PSL1GHT)/portlibs/ppu/include
+	@cp -v ../../sched.h $(PSL1GHT)/portlibs/ppu/include
 	@echo "Done."
+
+install_package_config:
+	sed -e "s/@prefix@/\/usr\/local\/ps3dev\/portlibs\/ppu/" \
+      -e "s/@VERSION@/1.0.0/" \
+      -e "s/@LIBS@/-lpthread/" pthread.pc.in > $(PSL1GHT)/portlibs/ppu/lib/pkgconfig/pthread.pc
+
+install:  install_library install_package_config
