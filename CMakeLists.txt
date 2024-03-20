@@ -198,16 +198,19 @@ target_include_directories(pthread PUBLIC
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2 -Wall -g -fno-strict-aliasing")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -Wall -g -fno-strict-aliasing -fexceptions -fno-rtti -Werror -D__CLEANUP_CXX")
 
+set(PS3DEV $ENV{PS3DEV})
+message("Value of PS3DEV: ${PS3DEV}")
+set(INSTALL_LIB_DIR "${PS3DEV}/ppu/lib")
+
 # Add include directories
 include_directories(
         src
-        /ps3dev/ppu/include/
+        ${PS3DEV}/ppu/include/
+        ${PS3DEV}/spu/include/
 )
 
 # Link libraries
 target_link_libraries(pthread PRIVATE -lm -Wl,--export-dynamic)
-
-set(INSTALL_LIB_DIR "/ps3dev/ppu/lib")
 
 # Installation
 install(TARGETS pthread DESTINATION ${INSTALL_LIB_DIR})
@@ -221,7 +224,7 @@ set(INSTALL_FILES
 )
 
 # Specify the directory where you want to install the files
-set(INSTALL_INCLUDE_DIR "/ps3dev/ppu/include") # Change bin to your desired directory
+set(INSTALL_INCLUDE_DIR "${PS3DEV}/ppu/include") # Change bin to your desired directory
 
 # Copy files during installation
 foreach (file ${INSTALL_FILES})

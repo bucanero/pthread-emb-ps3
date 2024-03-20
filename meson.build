@@ -170,10 +170,11 @@ os_objs = [
 source_files = mutex_objs + mutexattr_objs + support_objs + thread_objs + tls_objs + misc_objs + sem_objs + barrier_objs + spin_objs + condvar_objs + rwlock_objs + cancel_objs + os_objs
 
 # Define target
-install_dir = '/ps3dev/ppu/lib'
+ps3dev = get_option('ps3dev')
+install_dir = ps3dev + '/ppu/lib'
 libpthread = static_library('pthread',
                             sources: source_files,
-                            include_directories : ['/ps3dev/ppu/include', 'src', 'src/platform/helper', 'src/platform/psl1ght'],
+                            include_directories : [ps3dev + '/ppu/include', ps3dev + '/spu/include',  'src', 'src/platform/helper', 'src/platform/psl1ght'],
                             install: true,
                             install_dir: install_dir,
                             )
